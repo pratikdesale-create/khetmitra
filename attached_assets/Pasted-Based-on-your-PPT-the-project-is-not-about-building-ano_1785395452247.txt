@@ -1,0 +1,656 @@
+Based on your PPT, the project is **not about building another Plantix**. The main idea is to build a **hyperlocal assistant for farmers** that adds value after AI detects the disease. The web app should focus on localization, nearby agro shops, multilingual support, weather alerts, and government schemes rather than training an AI model. 
+
+Below is a detailed prompt you can paste directly into **Replit AI**.
+
+---
+
+# Prompt for Replit AI
+
+## Role
+
+You are an expert Full Stack Developer, UI/UX Designer, and AI Integration Engineer.
+
+Build a **modern, production-ready responsive web application** called **KhetMitra**.
+
+The website should look like a startup product (similar to Stripe, Linear, Notion, Vercel) with smooth animations, modern cards, rounded corners, glassmorphism, beautiful gradients, icons, and excellent typography.
+
+Do NOT create a basic student project.
+
+---
+
+# Project Overview
+
+KhetMitra is a hyperlocal crop-health companion for smallholder farmers.
+
+The purpose is **NOT** to replace disease detection systems like Plantix.
+
+Instead, it acts as the **last-mile advisory platform** by providing:
+
+* AI crop disease diagnosis
+* Local treatment suggestions
+* Nearby agro-input shop availability
+* Government scheme recommendations
+* Regional language support
+* Weather-based disease alerts
+* Field history
+
+---
+
+# Tech Stack
+
+Frontend
+
+* React
+* Vite
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* React Router
+* React Icons
+* Shadcn UI
+
+Backend
+
+* Node.js
+* Express
+
+Database
+
+* Firebase or Supabase
+
+Maps
+
+* Leaflet or Google Maps
+
+Future AI API
+
+Create placeholders for
+
+* Plantix API
+* Hugging Face API
+* OpenAI API
+
+The project should be modular so APIs can be connected later.
+
+---
+
+# Theme
+
+Primary Color
+
+Green (#2E7D32)
+
+Secondary
+
+Light Green
+
+White
+
+Dark Gray
+
+Background
+
+Off White
+
+Use beautiful farming illustrations.
+
+Use animated leaves.
+
+Smooth transitions.
+
+Responsive on
+
+Desktop
+
+Tablet
+
+Mobile
+
+---
+
+# Website Pages
+
+## 1. Landing Page
+
+Hero Section
+
+Title
+
+"KhetMitra"
+
+Subtitle
+
+"Your Hyperlocal Crop Health Companion"
+
+Buttons
+
+Diagnose Crop
+
+Explore Features
+
+Navbar
+
+Home
+
+Features
+
+Dashboard
+
+About
+
+Contact
+
+Login
+
+---
+
+Sections
+
+Problem
+
+Explain
+
+Farmers wait too long for agricultural experts.
+
+Language barriers.
+
+Generic recommendations.
+
+No local shop information.
+
+Use statistics cards.
+
+---
+
+Market Gap
+
+Comparison cards
+
+Google Lens
+
+Plantix
+
+KhetMitra
+
+Highlight that KhetMitra focuses on hyperlocal advisory.
+
+---
+
+Features Section
+
+Cards with icons
+
+Photo Diagnosis
+
+Local Advisory
+
+Nearby Agro Shops
+
+Weather Alerts
+
+Government Schemes
+
+Voice Assistant
+
+Field History
+
+Offline Support
+
+---
+
+How It Works
+
+Animated timeline
+
+Step 1
+
+Upload crop image
+
+↓
+
+Step 2
+
+AI identifies disease
+
+↓
+
+Step 3
+
+Match local conditions
+
+↓
+
+Step 4
+
+Recommend treatment
+
+↓
+
+Step 5
+
+Show nearby shops
+
+↓
+
+Step 6
+
+Weather warning
+
+---
+
+Roadmap
+
+Phase 1
+
+Current MVP
+
+Phase 2
+
+Community
+
+Marketplace
+
+Government schemes
+
+Phase 3
+
+Precision Farming
+
+Charts
+
+Progress bars
+
+---
+
+Footer
+
+Social icons
+
+Email
+
+GitHub
+
+Privacy
+
+Terms
+
+---
+
+# Dashboard
+
+Beautiful sidebar
+
+Overview
+
+Diagnosis
+
+History
+
+Weather
+
+Shops
+
+Schemes
+
+Settings
+
+---
+
+Dashboard Cards
+
+Today's Diagnoses
+
+Nearby Shops
+
+Weather
+
+Disease Alerts
+
+Recent Activity
+
+---
+
+# Diagnosis Page
+
+Large upload card
+
+Drag & Drop
+
+Camera Upload
+
+Preview image
+
+Button
+
+Analyze Crop
+
+When clicked
+
+Display fake AI result
+
+Example
+
+Disease
+
+Leaf Blight
+
+Confidence
+
+93%
+
+Severity
+
+Moderate
+
+Recommendations
+
+Spray Fungicide
+
+Avoid Overwatering
+
+Remove infected leaves
+
+Add disclaimer
+
+"Demo Result"
+
+Prepare API functions
+
+analyzeCrop()
+
+detectDisease()
+
+---
+
+# Nearby Shops
+
+Interactive Map
+
+Search
+
+Distance
+
+Shop Card
+
+Name
+
+Address
+
+Available Products
+
+Call Button
+
+Directions Button
+
+Inventory
+
+---
+
+# Government Schemes
+
+Cards
+
+PM-KISAN
+
+Crop Insurance
+
+Soil Health Card
+
+Read More
+
+Eligibility
+
+Apply Button
+
+---
+
+# Weather Dashboard
+
+Current Temperature
+
+Humidity
+
+Rain Chance
+
+Wind
+
+Disease Risk Meter
+
+Low
+
+Medium
+
+High
+
+Alerts
+
+---
+
+# Field History
+
+Timeline
+
+Previous Diseases
+
+Images
+
+Treatment
+
+Recovery
+
+Export PDF
+
+---
+
+# Voice Assistant
+
+Microphone Button
+
+Placeholder
+
+Future Speech-to-Text integration
+
+---
+
+# Multilingual Support
+
+Language Selector
+
+English
+
+Hindi
+
+Marathi
+
+Tamil
+
+Gujarati
+
+Bengali
+
+Architecture must support future regional dialects.
+
+---
+
+# Authentication
+
+Login
+
+Register
+
+Forgot Password
+
+Firebase Authentication
+
+---
+
+# Admin Panel
+
+Manage Users
+
+Manage Schemes
+
+Manage Shops
+
+Analytics
+
+Diagnosis Count
+
+---
+
+# Animations
+
+Use Framer Motion
+
+Fade
+
+Slide
+
+Scale
+
+Hover
+
+Floating icons
+
+Parallax hero
+
+Counters
+
+---
+
+# Responsive Design
+
+Perfect on
+
+320px
+
+768px
+
+1024px
+
+1440px
+
+---
+
+# Folder Structure
+
+```
+src/
+
+components/
+
+pages/
+
+hooks/
+
+services/
+
+context/
+
+assets/
+
+utils/
+
+types/
+
+api/
+
+```
+
+---
+
+# API Placeholders
+
+Create service files
+
+```
+plantixService.ts
+
+weatherService.ts
+
+mapService.ts
+
+schemeService.ts
+
+speechService.ts
+
+```
+
+Each should contain dummy API calls with TODO comments.
+
+---
+
+# Dummy Data
+
+Generate realistic dummy data for
+
+10 shops
+
+15 diseases
+
+Weather
+
+Government schemes
+
+History
+
+---
+
+# Extra Features
+
+Dark Mode
+
+Search
+
+Filter
+
+Toast Notifications
+
+Loading Skeletons
+
+Error Pages
+
+404 Page
+
+Empty States
+
+Offline Banner
+
+Progress Indicators
+
+---
+
+# Code Quality
+
+Use reusable components.
+
+Follow clean architecture.
+
+No repeated code.
+
+Proper TypeScript types.
+
+Responsive.
+
+Accessible.
+
+SEO-friendly.
+
+Well-commented.
+
+---
+
+# Final Output
+
+Produce a polished, startup-quality web application with:
+
+* Professional UI/UX
+* Responsive design
+* Modular architecture
+* API-ready services
+* Modern animations
+* Clean code
+* Realistic dummy data
+* Easy future integration with AI disease detection, weather APIs, and map services
+
+The final project should look like a product that could be showcased in a hackathon, college project, startup demo, or portfolio rather than a simple CRUD application.

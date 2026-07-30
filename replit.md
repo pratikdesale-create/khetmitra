@@ -1,6 +1,6 @@
-# [Project name]
+# KhetMitra
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A hyperlocal crop-health companion for Indian smallholder farmers — snap a photo of a sick plant, get AI diagnosis, find nearby agro-input shops, check weather-based disease risk, and apply for government schemes.
 
 ## Run & Operate
 

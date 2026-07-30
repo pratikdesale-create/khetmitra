@@ -3,13 +3,23 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: KhetMitra API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: diagnoses
+    description: Crop diagnosis operations
+  - name: shops
+    description: Nearby agro-input shops
+  - name: weather
+    description: Weather and disease risk
+  - name: schemes
+    description: Government schemes
+  - name: dashboard
+    description: Dashboard summary
 paths:
   /healthz:
     get:
@@ -24,6 +34,120 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /diagnoses:
+    get:
+      operationId: listDiagnoses
+      tags: [diagnoses]
+      summary: List all diagnoses
+      responses:
+        "200":
+          description: List of diagnoses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Diagnosis"
+    post:
+      operationId: createDiagnosis
+      tags: [diagnoses]
+      summary: Submit a new crop diagnosis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DiagnosisInput"
+      responses:
+        "201":
+          description: Diagnosis result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Diagnosis"
+
+  /diagnoses/{id}:
+    get:
+      operationId: getDiagnosis
+      tags: [diagnoses]
+      summary: Get a specific diagnosis
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Diagnosis detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Diagnosis"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /shops:
+    get:
+      operationId: listShops
+      tags: [shops]
+      summary: List nearby agro-input shops
+      responses:
+        "200":
+          description: List of shops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Shop"
+
+  /weather:
+    get:
+      operationId: getWeather
+      tags: [weather]
+      summary: Get current weather and disease risk
+      responses:
+        "200":
+          description: Weather data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeatherData"
+
+  /schemes:
+    get:
+      operationId: listSchemes
+      tags: [schemes]
+      summary: List government schemes
+      responses:
+        "200":
+          description: List of government schemes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Scheme"
+
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: Get dashboard summary stats
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +158,249 @@ components:
       required:
         - status
 
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    Diagnosis:
+      type: object
+      required:
+        - id
+        - cropName
+        - imagePath
+        - diseaseName
+        - confidence
+        - severity
+        - recommendations
+        - status
+        - createdAt
+      properties:
+        id:
+          type: number
+        cropName:
+          type: string
+        imagePath:
+          type: string
+        diseaseName:
+          type: string
+        confidence:
+          type: number
+        severity:
+          type: string
+          enum: [Low, Moderate, High, Critical]
+        recommendations:
+          type: array
+          items:
+            type: string
+        affectedArea:
+          type: ["string", "null"]
+        location:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: [Pending, Diagnosed, Treated, Recovered]
+        createdAt:
+          type: string
+
+    DiagnosisInput:
+      type: object
+      required:
+        - cropName
+        - imagePath
+      properties:
+        cropName:
+          type: string
+        imagePath:
+          type: string
+        affectedArea:
+          type: string
+        location:
+          type: string
+
+    Shop:
+      type: object
+      required:
+        - id
+        - name
+        - address
+        - latitude
+        - longitude
+        - distanceKm
+        - phone
+        - products
+        - isOpen
+        - rating
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        distanceKm:
+          type: number
+        phone:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        isOpen:
+          type: boolean
+        rating:
+          type: number
+
+    WeatherAlert:
+      type: object
+      required:
+        - type
+        - message
+        - severity
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        severity:
+          type: string
+          enum: [Low, Medium, High]
+
+    WeatherData:
+      type: object
+      required:
+        - location
+        - temperature
+        - humidity
+        - rainChance
+        - windSpeed
+        - condition
+        - diseaseRisk
+        - alerts
+        - forecast
+      properties:
+        location:
+          type: string
+        temperature:
+          type: number
+        humidity:
+          type: number
+        rainChance:
+          type: number
+        windSpeed:
+          type: number
+        condition:
+          type: string
+        diseaseRisk:
+          type: string
+          enum: [Low, Medium, High]
+        alerts:
+          type: array
+          items:
+            $ref: "#/components/schemas/WeatherAlert"
+        forecast:
+          type: array
+          items:
+            $ref: "#/components/schemas/ForecastDay"
+
+    ForecastDay:
+      type: object
+      required:
+        - day
+        - high
+        - low
+        - condition
+        - rainChance
+      properties:
+        day:
+          type: string
+        high:
+          type: number
+        low:
+          type: number
+        condition:
+          type: string
+        rainChance:
+          type: number
+
+    Scheme:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - ministry
+        - eligibility
+        - benefit
+        - applicationUrl
+        - category
+        - isActive
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        ministry:
+          type: string
+        eligibility:
+          type: string
+        benefit:
+          type: string
+        applicationUrl:
+          type: string
+        category:
+          type: string
+          enum: [Financial, Insurance, Input, Technology, Other]
+        isActive:
+          type: boolean
+
+    DashboardSummary:
+      type: object
+      required:
+        - totalDiagnoses
+        - activeDiseases
+        - nearbyShops
+        - schemesAvailable
+        - weatherRisk
+        - recentDiagnoses
+        - monthlyDiagnosesCount
+      properties:
+        totalDiagnoses:
+          type: number
+        activeDiseases:
+          type: number
+        nearbyShops:
+          type: number
+        schemesAvailable:
+          type: number
+        weatherRisk:
+          type: string
+          enum: [Low, Medium, High]
+        recentDiagnoses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Diagnosis"
+        monthlyDiagnosesCount:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonthlyCount"
+
+    MonthlyCount:
+      type: object
+      required:
+        - month
+        - count
+      properties:
+        month:
+          type: string
+        count:
+          type: number
