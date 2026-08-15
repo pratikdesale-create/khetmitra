@@ -1,0 +1,432 @@
+Here's a much stronger prompt that you can give to **Replit AI**. It focuses on making the language system feel like a real product instead of just translating text.
+
+---
+
+# Prompt: Build an Advanced Regional Language System for KhetMitra
+
+You are a senior Full-Stack Engineer and UX Designer.
+
+Enhance the **Regional Language** feature of the KhetMitra web application to provide a seamless multilingual experience for Indian farmers.
+
+This is one of the core features of the application, so it should feel polished, intuitive, and scalable.
+
+---
+
+## Objective
+
+Allow every farmer to use the entire application in their preferred regional language with a single click.
+
+The language should update:
+
+* Navigation
+* Buttons
+* Forms
+* Cards
+* Dashboard
+* Alerts
+* Weather
+* Government Schemes
+* Crop Diagnosis Results
+* Shop Information
+* Voice Assistant
+* Error Messages
+* Notifications
+* Loading Messages
+* Help Section
+
+without refreshing the page.
+
+---
+
+## Supported Languages
+
+Implement complete support for:
+
+🇮🇳 English (Default)
+
+🇮🇳 Hindi (हिन्दी)
+
+🇮🇳 Marathi (मराठी)
+
+🇮🇳 Punjabi (ਪੰਜਾਬੀ)
+
+🇮🇳 Tamil (தமிழ்)
+
+🇮🇳 Telugu (తెలుగు)
+
+The architecture should allow adding more languages later.
+
+---
+
+## Translation Architecture
+
+Use **react-i18next**.
+
+Create the following structure:
+
+```
+src/
+
+locales/
+
+en/
+
+common.json
+
+hi/
+
+common.json
+
+mr/
+
+common.json
+
+pa/
+
+common.json
+
+ta/
+
+common.json
+
+te/
+
+common.json
+
+i18n.ts
+```
+
+Every language should have its own translation file.
+
+Never hardcode text inside components.
+
+Use translation keys everywhere.
+
+Example:
+
+```
+home.title
+
+dashboard.weather
+
+buttons.upload
+
+buttons.analyze
+
+alerts.success
+
+errors.network
+
+shops.available
+
+schemes.apply
+
+voice.start
+```
+
+---
+
+## Language Selector
+
+Create a modern language selector in the navigation bar.
+
+Features:
+
+• Globe icon
+
+• Country flag
+
+• Native language name
+
+Example
+
+🌐 Language
+
+🇮🇳 English
+
+🇮🇳 हिन्दी
+
+🇮🇳 मराठी
+
+🇮🇳 ਪੰਜਾਬੀ
+
+🇮🇳 தமிழ்
+
+🇮🇳 తెలుగు
+
+Use a modern dropdown with smooth animation.
+
+---
+
+## Automatic Language Detection
+
+On first visit:
+
+Detect browser language.
+
+If supported,
+
+automatically switch.
+
+Otherwise
+
+use English.
+
+Save the selected language in Local Storage.
+
+When the user returns,
+
+the app should remember their language.
+
+---
+
+## Farmer-Friendly Translations
+
+Do NOT use literal machine translations.
+
+Use simple vocabulary that rural farmers easily understand.
+
+Examples
+
+Instead of
+
+Diagnosis
+
+Hindi
+
+फसल की जांच
+
+Marathi
+
+पीक तपासणी
+
+Tamil
+
+பயிர் பரிசோதனை
+
+Telugu
+
+పంట పరిశీలన
+
+Punjabi
+
+ਫਸਲ ਜਾਂਚ
+
+Similarly simplify all agricultural terminology.
+
+---
+
+## Voice Assistant Integration
+
+When the selected language changes,
+
+the Voice Assistant should also switch.
+
+Example
+
+Hindi
+
+Speech Recognition → Hindi
+
+Speech Output → Hindi
+
+Marathi
+
+Speech Recognition → Marathi
+
+Tamil
+
+Tamil Voice
+
+Telugu
+
+Telugu Voice
+
+Punjabi
+
+Punjabi Voice
+
+Add placeholder functions for future speech integration.
+
+---
+
+## Regional Greetings
+
+Display greeting according to language.
+
+English
+
+Good Morning Farmer
+
+Hindi
+
+सुप्रभात किसान
+
+Marathi
+
+शुभ सकाळ शेतकरी
+
+Punjabi
+
+ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਜੀ
+
+Tamil
+
+வணக்கம் விவசாயி
+
+Telugu
+
+నమస్కారం రైతు గారు
+
+---
+
+## Weather Translation
+
+Translate
+
+Temperature
+
+Humidity
+
+Rainfall
+
+Wind Speed
+
+High Risk
+
+Medium Risk
+
+Low Risk
+
+Weather Alert
+
+into every supported language.
+
+---
+
+## Government Schemes
+
+Scheme descriptions should also change language.
+
+Example
+
+PM-KISAN
+
+English description
+
+Hindi description
+
+Marathi description
+
+Tamil description
+
+Telugu description
+
+Punjabi description
+
+---
+
+## Crop Diagnosis
+
+AI Result should appear in the selected language.
+
+Example
+
+Disease
+
+English
+
+Leaf Blight
+
+Hindi
+
+पत्ती झुलसा रोग
+
+Marathi
+
+पान करपा रोग
+
+Tamil
+
+இலை கருகல் நோய்
+
+Telugu
+
+ఆకు మచ్చ వ్యాధి
+
+Punjabi
+
+ਪੱਤੇ ਦੀ ਝੁਲਸ ਬਿਮਾਰੀ
+
+Treatment instructions should also translate.
+
+---
+
+## Error Messages
+
+Translate
+
+No Internet
+
+Camera Permission Denied
+
+Image Upload Failed
+
+Analysis Failed
+
+Location Disabled
+
+Server Error
+
+into every language.
+
+---
+
+## Accessibility
+
+Increase font size automatically for scripts like Tamil, Telugu, and Punjabi to improve readability.
+
+Ensure proper Unicode rendering and responsive layouts for all scripts.
+
+---
+
+## Future Scalability
+
+Create a reusable translation architecture.
+
+Adding a new language should only require:
+
+1. Creating a new locale JSON file.
+
+2. Registering it in `i18n.ts`.
+
+3. Adding it to the language selector.
+
+No other code changes should be necessary.
+
+---
+
+## UI Enhancements
+
+* Add smooth fade animation when switching languages.
+* Display the selected language in the navbar.
+* Show a small confirmation toast, e.g., "Language changed to Marathi."
+* Ensure all dialogs, modals, tooltips, and notifications are translated.
+* Keep the interface fully responsive on desktop, tablet, and mobile.
+
+---
+
+## Deliverables
+
+Generate a complete multilingual implementation with:
+
+* `react-i18next` integration.
+* Translation JSON files for English, Hindi, Marathi, Punjabi, Tamil, and Telugu.
+* Automatic language detection and persistence.
+* Dynamic language switching without page refresh.
+* Farmer-friendly terminology.
+* Voice assistant language placeholders.
+* Fully translated UI, dashboard, weather, crop diagnosis, shops, and government schemes.
+* Clean, modular, production-ready code following React best practices.
+
+The result should feel like a professional multilingual agricultural platform that is accessible and intuitive for farmers across different regions of India.

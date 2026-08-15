@@ -1,3 +1,4 @@
+import { OrganicBackground } from "@/components/organic-background";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
@@ -27,6 +28,7 @@ export default function LandingPage() {
     <MarketingLayout>
       {/* Hero Section */}
       <section className="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
+        <OrganicBackground />
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/50 z-10" />
           {/* We'll use the generated image if available */}

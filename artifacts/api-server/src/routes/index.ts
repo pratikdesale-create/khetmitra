@@ -5,14 +5,13 @@ import shopsRouter from "./shops";
 import weatherRouter from "./weather";
 import schemesRouter from "./schemes";
 import dashboardRouter from "./dashboard";
-
+import imagesRouter from "./images";
 const router: IRouter = Router();
-
 router.use(healthRouter);
 router.use(diagnosesRouter);
 router.use(shopsRouter);
 router.use(weatherRouter);
 router.use(schemesRouter);
 router.use(dashboardRouter);
-
+router.use(imagesRouter);
 export default router;

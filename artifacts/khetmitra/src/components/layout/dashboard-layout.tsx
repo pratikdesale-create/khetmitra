@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/language-context";
+import { languageNames, type Language } from "@/lib/i18n";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -18,17 +21,21 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-const navItems = [
-  { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Diagnosis", href: "/diagnose", icon: ScanSearch },
-  { name: "History", href: "/history", icon: History },
-  { name: "Weather", href: "/weather", icon: CloudSun },
-  { name: "Nearby Shops", href: "/shops", icon: Store },
-  { name: "Govt Schemes", href: "/schemes", icon: Landmark },
-];
+function useNavItems() {
+  const { t } = useLanguage();
+  return [
+    { name: t("nav.overview"), href: "/dashboard", icon: LayoutDashboard },
+    { name: t("nav.diagnosis"), href: "/diagnose", icon: ScanSearch },
+    { name: t("nav.history"), href: "/history", icon: History },
+    { name: t("nav.weather"), href: "/weather", icon: CloudSun },
+    { name: t("nav.shops"), href: "/shops", icon: Store },
+    { name: t("nav.schemes"), href: "/schemes", icon: Landmark },
+  ];
+}
 
 function NavLinks({ closeMobile }: { closeMobile?: () => void }) {
   const [location] = useLocation();
+  const navItems = useNavItems();
 
   return (
     <nav className="space-y-1">
@@ -56,8 +63,25 @@ function NavLinks({ closeMobile }: { closeMobile?: () => void }) {
   );
 }
 
+function LanguageSwitcher() {
+  const { language, setLanguage } = useLanguage();
+  return (
+    <Select value={language} onValueChange={(val) => setLanguage(val as Language)}>
+      <SelectTrigger className="w-[110px] h-9">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {(Object.keys(languageNames) as Language[]).map((lang) => (
+          <SelectItem key={lang} value={lang}>{languageNames[lang]}</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
+
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-[100dvh] flex flex-col md:flex-row bg-background">
@@ -77,11 +101,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <div className="p-4 border-t border-sidebar-border/50 space-y-1">
           <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors text-sm font-medium">
             <Settings className="w-5 h-5" />
-            Settings
+            {t("nav.settings")}
           </Link>
           <Link href="/login" className="flex items-center gap-3 px-3 py-2 rounded-md text-destructive/80 hover:bg-destructive/10 hover:text-destructive transition-colors text-sm font-medium">
             <LogOut className="w-5 h-5" />
-            Sign Out
+            {t("nav.signOut")}
           </Link>
         </div>
       </aside>
@@ -108,12 +132,16 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             </Sheet>
             <Logo />
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
         </header>
 
         {/* Desktop Header */}
         <header className="hidden md:flex h-16 items-center justify-end px-6 border-b bg-card/50 backdrop-blur sticky top-0 z-30">
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <Button variant="ghost" size="icon" className="relative">
               <Bell className="h-5 w-5" />
               <span className="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-destructive border-2 border-background"></span>

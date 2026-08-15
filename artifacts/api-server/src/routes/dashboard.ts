@@ -11,7 +11,10 @@ router.get("/dashboard/summary", async (req, res): Promise<void> => {
     .from(diagnosesTable)
     .orderBy(desc(diagnosesTable.createdAt));
 
-  const recentDiagnoses = allDiagnoses.slice(0, 5);
+  const recentDiagnoses = allDiagnoses.slice(0, 5).map((d) => ({
+    ...d,
+    createdAt: d.createdAt instanceof Date ? d.createdAt.toISOString() : d.createdAt,
+  }));
 
   // Build monthly counts for last 6 months
   const now = new Date();
